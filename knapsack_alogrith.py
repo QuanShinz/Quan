@@ -65,35 +65,32 @@ DL_counter = 1
 HP_counter = 1
 for package in packages_detail:
     if package.location == "HCMC":
-        package.package_code = f"HCMC{str(HCM_counter).zfill(3)}"  # Generate package code as PTD001, PTD002, etc.
+        package.package_code = f"HCMC{str(HCM_counter).zfill(3)}" 
         HCM_counter += 1
     if package.location == "Da Nang":
-        package.package_code = f"DAN{str(DAN_counter).zfill(3)}"  # Generate package code as PTD001, PTD002, etc.
+        package.package_code = f"DAN{str(DAN_counter).zfill(3)}"  
         DAN_counter += 1
     if package.location == "Nha Trang":
-        package.package_code = f"NAT{str(NAT_counter).zfill(3)}"  # Generate package code as PTD001, PTD002, etc.
+        package.package_code = f"NAT{str(NAT_counter).zfill(3)}"  
         NAT_counter += 1
     if package.location == "Dalat":
-        package.package_code = f"DL{str(DL_counter).zfill(3)}"  # Generate package code as PTD001, PTD002, etc.
+        package.package_code = f"DL{str(DL_counter).zfill(3)}"  
         DL_counter += 1
     if package.location == "Hai Phong":
-        package.package_code = f"HP{str(HP_counter).zfill(3)}"  # Generate package code as PTD001, PTD002, etc.
+        package.package_code = f"HP{str(HP_counter).zfill(3)}"  
         HP_counter += 1
     packages.append(package)
 
-# Define truck capacity
 maximum_weight = 25
-# Allocate packages to trucks
+
 trucks = allocate_trucks(packages, maximum_weight)
 
-# Display results
 truck_number = 1
 for truck in trucks:
     print(f"\nTruck {truck_number} Packages (Furthest Distance Loaded First):")
     for package in truck:
         print(f"Package Code: {package.package_code}, Location: {package.location}, Weight: {package.weight}, Distance: {package.distance}")
     
-    # Generate and print invoices for this truck
     invoices = generate_invoice(truck)
     print(f"\nTruck {truck_number} Invoices:")
     for invoice in invoices:
